@@ -7,7 +7,10 @@ load_dotenv()
 def _req(name: str) -> str:
     v = os.getenv(name, "").strip()
     if not v:
-        raise RuntimeError(f"Missing {name} in .env")
+        raise RuntimeError(
+            f"Missing {name}. Set it in environment variables (Railway Variables) "
+            f"or in a local .env file."
+        )
     return v
 
 def _int(name: str, default: int) -> int:
@@ -36,3 +39,4 @@ def load_config() -> Config:
         default_ticket_channel_id=_int("AUTOTICKET_CHANNEL_ID", 0),
         default_payment_channel_id=_int("AUTOPAYMENT_CHANNEL_ID", 0),
     )
+
