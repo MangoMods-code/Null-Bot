@@ -8,8 +8,7 @@ def _req(name: str) -> str:
     v = os.getenv(name, "").strip()
     if not v:
         raise RuntimeError(
-            f"Missing {name}. Set it in environment variables (Railway Variables) "
-            f"or in a local .env file."
+            f"Missing {name}. Set it in Railway → Variables, or in your local .env file."
         )
     return v
 
@@ -28,6 +27,9 @@ class Config:
     default_product_channel_id: int
     default_ticket_channel_id: int
     default_payment_channel_id: int
+    staff_role_id: int
+    owner_role_id: int
+    guild_id: int
 
 def load_config() -> Config:
     return Config(
@@ -38,5 +40,7 @@ def load_config() -> Config:
         default_product_channel_id=_int("AUTOPRODUCT_CHANNEL_ID", 0),
         default_ticket_channel_id=_int("AUTOTICKET_CHANNEL_ID", 0),
         default_payment_channel_id=_int("AUTOPAYMENT_CHANNEL_ID", 0),
+        staff_role_id=_int("STAFF_ROLE_ID", 0),
+        owner_role_id=_int("OWNER_ROLE_ID", 0),
+        guild_id=_int("GUILD_ID", 0),
     )
-
